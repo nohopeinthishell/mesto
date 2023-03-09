@@ -1,0 +1,12 @@
+.places__card {
+  background: #FFF;
+  border-radius: 10px;
+  width: 282px;
+  height: 362px;
+}
+
+@media screen and (max-width: 767px) {
+  .places__card {
+    height: 361px;
+  }
+}

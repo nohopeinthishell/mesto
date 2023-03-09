@@ -10,5 +10,5 @@
 
 ## Жданов Сергей
 
-## https://nohopeinthishell.github.io/russian-travel/
+## https://nohopeinthishell.github.io/mesto/
 

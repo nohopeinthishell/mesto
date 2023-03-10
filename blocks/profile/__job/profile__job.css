@@ -6,6 +6,10 @@
   grid-area: job;
   margin: 0;
   max-width: fit-content;
+  text-overflow: ellipsis;
+  max-width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 1023px) {
@@ -13,5 +17,11 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__job {
+    max-width: 250px;
   }
 }

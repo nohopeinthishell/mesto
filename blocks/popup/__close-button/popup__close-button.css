@@ -1,5 +1,5 @@
 .popup__close-button {
-  background-image: url(../../../image/close-button.png);
+  background-image: url(../../../images/close-button.svg);
   cursor: pointer;
   width: 32px;
   height: 32px;
@@ -21,7 +21,7 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    top: -38px;
-    right: 0;
+    top: -32px;
+    right: 20;
   }
 }

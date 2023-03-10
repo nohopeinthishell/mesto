@@ -1,5 +1,5 @@
 .places__like-button {
-  background-image: url(../../../image/like-button.svg);
+  background-image: url(../../../images/like-button.svg);
   height: 19px;
   width: 22px;
   border: none;
@@ -13,6 +13,6 @@
 }
 
 .places__like-button:active {
-  background-image: url(../../../image/like-button-active.svg);
+  background-image: url(../../../images/like-button-active.svg);
   opacity: 1;
 }

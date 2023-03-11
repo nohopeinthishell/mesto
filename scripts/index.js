@@ -14,11 +14,11 @@ const openPopup = function() {
   let initialValueJob = jobValue.textContent;
   nameInput.value = initialValueName;
   jobInput.value = initialValueJob;
-  popupElement.classList.add("popup__opened");
+  popupElement.classList.add("popup_opened");
 };
 
 const closePopup = function() {
-  popupElement.classList.remove("popup__opened")
+  popupElement.classList.remove("popup_opened")
 };
 
 // const closePopupByClickOnOverlay = function(event) {

@@ -23,58 +23,16 @@
         </section>
         <section class="places">
           <ul class="places__cards">
-            <li class="places__card">
-              <img src="./images/image-karachaevsk.jpg" alt="сентинский храм" class="places__image">
-              <div class="places__items">
-                <h2 class="places__text">Карачаевск</h2>
-                <button class="places__like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="places__card">
-              <img src="./images/image-elbrus.jpg" alt="пейзаж гор Эльбруса" class="places__image">
-              <div class="places__items">
-                <h2 class="places__text">Гора Эльбрус</h2>
-                <button class="places__like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="places__card">
-              <img src="./images/image-dombay.jpg" alt="горы Домбая" class="places__image">
-              <div class="places__items">
-                <h2 class="places__text">Домбай</h2>
-                <button class="places__like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="places__card">
-              <img src="./images/image-elbrus.jpg" alt="пейзаж гор Эльбруса" class="places__image">
-              <div class="places__items">
-                <h2 class="places__text">Гора Эльбрус</h2>
-                <button class="places__like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="places__card">
-              <img src="./images/image-dombay.jpg" alt="горы Домбая" class="places__image">
-              <div class="places__items">
-                <h2 class="places__text">Домбай</h2>
-                <button class="places__like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="places__card">
-              <img src="./images/image-karachaevsk.jpg" alt="сентинский храм" class="places__image">
-              <div class="places__items">
-                <h2 class="places__text">Карачаево-Черкасово</h2>
-                <button class="places__like-button" type="button"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p>
       </footer>
-      <div class="popup">
+      <div class="popup popup_profile">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
-          <form class="popup__form" name="form-edit">
+          <form class="popup__form popup__form_profile" name="form-edit">
             <h2 class="popup__edit-text">Редактировать профиль</h2>
             <fieldset class="popup__field">
               <input type="text" class="popup__input popup__input_type_name" name="input-name" placeholder="Введите имя" required>
@@ -86,6 +44,38 @@
           </form>
         </div>
       </div>
+      <div class="popup popup_cards">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button"></button>
+          <form class="popup__form popup__form_card" name="form-edit">
+            <h2 class="popup__edit-text">Новое место</h2>
+            <fieldset class="popup__field">
+              <input type="text" class="popup__input popup__input_type_title" name="input-title" placeholder="Название" required>
+            </fieldset>
+            <fieldset class="popup__field">
+              <input type="text" class="popup__input popup__input_type_link" name="input-link" placeholder="Ссылка на картинку" required>
+            </fieldset>
+            <input type="submit" class="popup__submit" value="Создать">
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_image">
+        <div class="popup__image-container">
+          <button class="popup__close-button" type="button"></button>
+          <img src="" alt="" class="popup__place-image">
+          <h2 class="popup__image-title"></h2>
+        </div>
+      </div>
+      <template class="template">
+            <li class="places__card">
+              <img src="" alt="" class="places__image">
+              <div class="places__items">
+                <h2 class="places__text"></h2>
+                <button class="places__like-button" type="button"></button>
+              </div>
+              <button class="places__delete-button" type="button"></button>
+            </li>
+      </template>
     </div>
     <script src="./scripts/index.js"></script>
   </body>

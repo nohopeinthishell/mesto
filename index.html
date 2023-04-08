@@ -27,15 +27,21 @@
         </section>
       </main>
       <footer class="footer">
-        <p class="footer__copyright">© 2022 Mesto Russia</p>
+        <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
       <div class="popup popup_profile">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
-          <form class="popup__form popup__form_profile" name="form-edit">
+          <form class="popup__form popup__form_profile" name="form-edit" novalidate>
             <h2 class="popup__edit-text">Редактировать профиль</h2>
-            <input type="text" class="popup__input popup__input_type_name" name="input-name" placeholder="Введите имя" required>
-            <input type="text" class="popup__input popup__input_type_job" name="input-job" placeholder="Введите профессию" required>
+            <label class="popup__label">
+              <input type="text" class="popup__input popup__input_type_name" id="name-input" name="input-name" placeholder="Введите имя" required minlength="2" maxlength="40">
+              <span class="popup__input-error name-input-error"></span>
+            </label>
+            <label class="popup__label">
+              <input type="text" class="popup__input popup__input_type_job" id="job-input" name="input-job" placeholder="Введите профессию" required minlength="2" maxlength="200">
+              <span class="popup__input-error job-input-error"></span>
+            </label>
             <button type="submit" class="popup__submit">Сохранить</button>
           </form>
         </div>
@@ -43,10 +49,16 @@
       <div class="popup popup_cards">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
-          <form class="popup__form popup__form_card" name="form-edit">
+          <form class="popup__form popup__form_card" name="form-edit" novalidate>
             <h2 class="popup__edit-text">Новое место</h2>
-            <input type="text" class="popup__input popup__input_type_title" name="input-title" placeholder="Название" required>
-            <input type="text" class="popup__input popup__input_type_link" name="input-link" placeholder="Ссылка на картинку" required>
+            <label class="popup__label">
+              <input type="text" class="popup__input popup__input_type_title" id="title-input" name="input-title" placeholder="Название" required minlength="2" maxlength="30">
+              <span class="popup__input-error title-input-error"></span>
+            </label>
+            <label class="popup__label">
+              <input type="url" class="popup__input popup__input_type_link" id="link-input" name="input-link" placeholder="Ссылка на картинку" required>
+              <span class="popup__input-error link-input-error"></span>
+            </label>
             <button type="submit" class="popup__submit">Создать</button>
           </form>
         </div>
@@ -69,6 +81,8 @@
             </li>
       </template>
     </div>
+    <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

@@ -28,6 +28,7 @@ const initialCardsReversed = initialCards.reverse();
 
 const openPopup = function(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByClickOnEsc);
 }
 
 const closePopupByClickOnOverlay = (evt) => {
@@ -55,6 +56,7 @@ const openPopupProfile = function() {
 
 const closePopup = function(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', closePopupByClickOnEsc);
 };
 
 const openPopupCard  = function() {
@@ -93,7 +95,8 @@ popupOpenButtonCards.addEventListener('click', openPopupCard);
 
 document.querySelectorAll('.popup__close-button').forEach(button => {
   const buttonsPopup = button.closest('.popup'); 
-  button.addEventListener('click', () => closePopup(buttonsPopup)); 
+  button.addEventListener('click', () => closePopup(buttonsPopup));
+  buttonsPopup.addEventListener('mousedown', closePopupByClickOnOverlay); 
 }); 
 
 
@@ -126,10 +129,6 @@ const createPopupImage = function(item) {
   openPopup(popupImage);
 }
 
-popupCards.addEventListener('mousedown', closePopupByClickOnOverlay);
-popupImage.addEventListener('mousedown', closePopupByClickOnOverlay);
-popupProfile.addEventListener('mousedown', closePopupByClickOnOverlay);
-document.addEventListener('keydown', closePopupByClickOnEsc);
 
 
 

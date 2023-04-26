@@ -1,6 +1,11 @@
+import {Card} from "./card.js";
+import { FormValidate } from "./FormValidate.js";
+import { initialCards, enableValidationSet } from "./data.js";
+
+
+
 const popupProfile = document.querySelector(".popup_profile");
 const popupOpenButtonProfile = document.querySelector(".profile__edit-button");
-const popupCloseButtonProfile = popupProfile.querySelector(".popup__close-button");
 const nameValue = document.querySelector(".profile__name");
 const jobValue = document.querySelector(".profile__job");
 const formProfile = popupProfile.querySelector(".popup__form_profile");
@@ -12,19 +17,19 @@ const newNameValue = document.querySelector(".profile__name");
 const newJobValue = document.querySelector(".profile__job");
 const popupCards = document.querySelector('.popup_cards');
 const popupOpenButtonCards = document.querySelector('.profile__add-button');
-const popupCloseButtonCards = popupCards.querySelector('.popup__close-button');
-const cardsTemplate = document.querySelector('.template').content;
 const cardList = document.querySelector('.places__cards');
 const formCard = popupCards.querySelector('.popup__form_card');
 const popupImage = document.querySelector('.popup_image');
-const popupCloseButtonImage = popupImage.querySelector('.popup__close-button');
 const popupPlaceImage = popupImage.querySelector('.popup__place-image');
 const popupImageTitle = popupImage.querySelector('.popup__image-title');
-const popupCardInputs = Array.from(formCard.querySelectorAll('.popup__input'));
-const popupProfileInputs = Array.from(formProfile.querySelectorAll('.popup__input'));
-const popupProfileButton = formProfile.querySelector('.popup__submit');
-
 const initialCardsReversed = initialCards.reverse();
+
+const formProfileValidated = new FormValidate(enableValidationSet, formProfile);
+formProfileValidated.enabelValidation();
+
+const formCardValidated = new FormValidate(enableValidationSet, formCard);
+formCardValidated.enabelValidation();
+
 
 const openPopup = function(popup) {
   popup.classList.add('popup_opened');
@@ -49,8 +54,8 @@ const openPopupProfile = function() {
   const initialValueJob = jobValue.textContent;
   nameInput.value = initialValueName;
   jobInput.value = initialValueJob;
-  buttonToggleState(popupProfileInputs, popupProfileButton, enableValidationSet);
-  removeValidationErrors(formProfile, popupProfileInputs);
+  formProfileValidated.removeValidationErrors();
+  formProfileValidated.buttonToggleState();
   openPopup(popupProfile);
 };
 
@@ -62,7 +67,8 @@ const closePopup = function(popup) {
 const openPopupCard  = function() {
   titleCardInput.value = '';
   linkCardInput.value = '';
-  removeValidationErrors(formCard, popupCardInputs);
+  formCardValidated.removeValidationErrors();
+  formCardValidated.buttonToggleState();
   openPopup(popupCards);
 };
 
@@ -80,8 +86,10 @@ function createFormSumbit(event) {
   event.preventDefault();
   const titleInputValue = titleCardInput.value;
   const linkInputValue = linkCardInput.value;
-  item = {name: titleInputValue, link: linkInputValue};
-  renderCard(createCard(item));
+  const item = {name: titleInputValue, link: linkInputValue};
+  const card = new Card(item, '.template');
+  const cardElement = card.generateCard();
+  renderCard(cardElement);
   closePopup(popupCards);
 }
 
@@ -100,27 +108,9 @@ document.querySelectorAll('.popup__close-button').forEach(button => {
 }); 
 
 
-
-const createCard = function(item) {
-  const newCard = cardsTemplate.querySelector('.places__card').cloneNode(true);
-  const cardImage = newCard.querySelector('.places__image');
-  cardImage.addEventListener('click', () => createPopupImage(item));
-
-  cardImage.src = item.link;
-  newCard.querySelector('.places__text').textContent = item.name;
-  cardImage.alt = item.name;
-  newCard.querySelector('.places__like-button').addEventListener('click', (evt) => evt.target.classList.toggle('places__like-button_active'));
-  newCard.querySelector('.places__delete-button').addEventListener('click', (evt) => evt.target.closest('.places__card').remove('places__card'));
-  return newCard;
-}
-;
-
 const renderCard = (createCard) => {
   cardList.prepend((createCard));
 }
-
-initialCards.forEach(card => renderCard(createCard(card)));
-
 
 const createPopupImage = function(item) {
   popupPlaceImage.src = item.link;
@@ -128,6 +118,19 @@ const createPopupImage = function(item) {
   popupImageTitle.textContent = item.name;
   openPopup(popupImage);
 }
+
+
+initialCardsReversed.forEach((item) => {
+  const card = new Card(item, '.template');
+  const cardElement = card.generateCard();
+  renderCard(cardElement);
+})
+
+
+export {createPopupImage};
+
+
+
 
 
 

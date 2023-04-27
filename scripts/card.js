@@ -1,13 +1,14 @@
-import { createPopupImage } from "./index.js";
-
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._data = data;
     this._name = data.name;
     this._src = data.link;
     this._alt = data.name;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
+
+  
 
   _getTemplate() {
     const cardElement = document.querySelector(this._templateSelector).content.querySelector('.places__card').cloneNode(true);
@@ -16,10 +17,16 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
+    this._cardImage = this._element.querySelector('.places__image');
+    this._cardText = this._element.querySelector('.places__text');
+    this._cardLikeButton = this._element.querySelector('.places__like-button');
+    this._cardDeleteButton = this._element.querySelector('.places__delete-button');
+
     this._setEventListeneres();
-    this._element.querySelector('.places__image').src = this._src;
-    this._element.querySelector('.places__image').alt = this._alt;
-    this._element.querySelector('.places__text').textContent = this._name;
+    this._cardImage.src = this._src;
+    this._cardImage.alt = this._alt;
+    this._cardText.textContent = this._name;
 
     return this._element
   }
@@ -29,17 +36,17 @@ class Card {
   }
 
   _likeCard = () => {
-    this._element.querySelector('.places__like-button').classList.toggle('places__like-button_active');
+    this._cardLikeButton.classList.toggle('places__like-button_active');
   }
 
   _openPopupCard = () => {
-    createPopupImage(this._data)
+    this._handleCardClick(this._name, this._src);
   }
 
   _setEventListeneres() {
-    this._element.querySelector('.places__delete-button').addEventListener('click', this._deleteCard);
-    this._element.querySelector('.places__like-button').addEventListener('click', this._likeCard);
-    this._element.querySelector('.places__image').addEventListener('click', this._openPopupCard);
+    this._cardDeleteButton.addEventListener('click', this._deleteCard);
+    this._cardLikeButton.addEventListener('click', this._likeCard);
+    this._cardImage.addEventListener('click', this._openPopupCard);
   }
 }
 

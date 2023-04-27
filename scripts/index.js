@@ -65,8 +65,7 @@ const closePopup = function(popup) {
 };
 
 const openPopupCard  = function() {
-  titleCardInput.value = '';
-  linkCardInput.value = '';
+  formCard.reset();
   formCardValidated.removeValidationErrors();
   formCardValidated.buttonToggleState();
   openPopup(popupCards);
@@ -112,25 +111,25 @@ const renderCard = (createCard) => {
   cardList.prepend((createCard));
 }
 
-const createPopupImage = function(item) {
-  popupPlaceImage.src = item.link;
-  popupPlaceImage.alt = item.name;
-  popupImageTitle.textContent = item.name;
+function handleCardClick(name, link) {
+  popupPlaceImage.src = link;
+  popupPlaceImage.alt = name;
+  popupImageTitle.textContent = name;
   openPopup(popupImage);
 }
 
 
-initialCardsReversed.forEach((item) => {
-  const card = new Card(item, '.template');
+function createCard(item) {
+  const card = new Card(item, '.template', handleCardClick);
   const cardElement = card.generateCard();
-  renderCard(cardElement);
+  return cardElement
+}
+
+
+
+initialCardsReversed.forEach((item) => {
+  renderCard(createCard(item));
 })
-
-
-export {createPopupImage};
-
-
-
 
 
 

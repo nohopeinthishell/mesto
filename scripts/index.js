@@ -86,9 +86,7 @@ function createFormSumbit(event) {
   const titleInputValue = titleCardInput.value;
   const linkInputValue = linkCardInput.value;
   const item = {name: titleInputValue, link: linkInputValue};
-  const card = new Card(item, '.template');
-  const cardElement = card.generateCard();
-  renderCard(cardElement);
+  renderCard(createCard(item));
   closePopup(popupCards);
 }
 

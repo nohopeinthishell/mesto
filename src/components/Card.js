@@ -1,9 +1,9 @@
-class Card {
+export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._data = data;
-    this._name = data.name;
+    this._title = data.title;
     this._src = data.link;
-    this._alt = data.name;
+    this._alt = data.title;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -26,7 +26,7 @@ class Card {
     this._setEventListeneres();
     this._cardImage.src = this._src;
     this._cardImage.alt = this._alt;
-    this._cardText.textContent = this._name;
+    this._cardText.textContent = this._title ;
 
     return this._element
   }
@@ -39,16 +39,10 @@ class Card {
     this._cardLikeButton.classList.toggle('places__like-button_active');
   }
 
-  _openPopupCard = () => {
-    this._handleCardClick(this._name, this._src);
-  }
 
   _setEventListeneres() {
     this._cardDeleteButton.addEventListener('click', this._deleteCard);
     this._cardLikeButton.addEventListener('click', this._likeCard);
-    this._cardImage.addEventListener('click', this._openPopupCard);
+    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 }
-
-
-export {Card};

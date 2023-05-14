@@ -12,19 +12,19 @@ export default class FormValidate {
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this.buttonToggleState();
+    this.toggleButtonState();
     this._inputList.forEach(inputElement => {
       this._hideInputError(inputElement);
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this.buttonToggleState();
+        this.toggleButtonState();
       })
     })
 
   }
 
 
-  buttonToggleState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;

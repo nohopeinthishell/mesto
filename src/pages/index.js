@@ -18,20 +18,16 @@ import PopupWithImage from "../components/PopupWithImage.js";
 
 const initialCardsReversed = initialCards.reverse();
 
+const formWithImagePopup = new PopupWithImage('.popup_image');
+formWithImagePopup.setEventListeners();
 
 const userProfile = new UserInfo({nameSelector: ".profile__name", jobSelector: ".profile__job"});
 
 
-const InitialCardSet = new Section({items: initialCardsReversed, 
+const initialCardSet = new Section({items: initialCardsReversed, 
   renderer:  (item) => 
-  {const card = new Card(item, '.template', () => {
-    const formWithImagePopup = new PopupWithImage('.popup_image', item);
-    formWithImagePopup.setEventListeners();
-    formWithImagePopup.open();
-  });
-  const cardElement = card.generateCard();
-  return cardElement}}, '.places__cards');
-InitialCardSet.renderItems();
+  {return createCard(item)}}, '.places__cards');
+initialCardSet.renderItems();
 
 const formProfileValidated = new FormValidate(enableValidationSet, formProfile);
 formProfileValidated.enabelValidation();
@@ -41,32 +37,31 @@ formCardValidated.enabelValidation();
 
 const OpenPopupProfile = () => {
   const {name, job} = userProfile.getUserInfo();
-  nameInput.value = name;
-  jobInput.value = job;
-  PopupWithProfileForm.open();
-  formProfileValidated.enabelValidation();
+  popupWithProfileForm.setInputValues({name,job})
+  popupWithProfileForm.open();
+  formProfileValidated.toggleButtonState();
+  formProfileValidated.removeValidationErrors();
 }
 
-const OpenPopupCard = () => {
-  PopupWithCardForm.open();
-  formCardValidated.enabelValidation();
+const openPopupCard = () => {
+  popupWithCardForm.open();
+  formCardValidated.toggleButtonState();
+  formCardValidated.removeValidationErrors();
 }
 
-const PopupWithCardForm = new PopupWithForm('.popup_cards', (data) => {InitialCardSet.addItem(createCard(data))});
-PopupWithCardForm.setEventListeners();
-popupOpenButtonCards.addEventListener('click', OpenPopupCard);
+const popupWithCardForm = new PopupWithForm('.popup_cards', (data) => {initialCardSet.addItem(createCard(data))});
+popupWithCardForm.setEventListeners();
+popupOpenButtonCards.addEventListener('click', openPopupCard);
 
-const PopupWithProfileForm = new PopupWithForm('.popup_profile', (data) => {userProfile.setUserInfo(data)});
-PopupWithProfileForm.setEventListeners();
+const popupWithProfileForm = new PopupWithForm('.popup_profile', (data) => {userProfile.setUserInfo(data)});
+popupWithProfileForm.setEventListeners();
 popupOpenButtonProfile.addEventListener('click', OpenPopupProfile)
 
 
 
 function createCard(item) {
   const card = new Card(item, '.template', () => {
-    const formWithImagePopup = new PopupWithImage('.popup_image', item);
-    formWithImagePopup.setEventListeners();
-    formWithImagePopup.open();
+    formWithImagePopup.open(item);
   });
   const cardElement = card.generateCard();
   return cardElement

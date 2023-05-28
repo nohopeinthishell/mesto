@@ -38,3 +38,15 @@ export const popupOpenButtonProfile = document.querySelector(".profile__edit-but
 export const formProfile = document.querySelector(".popup__form_profile");
 export const popupOpenButtonCards = document.querySelector('.profile__add-button');
 export const formCard = document.querySelector('.popup__form_card');
+export const formAvatar = document.querySelector('.popup__form_avatar');
+export const popupOpenButtonAvatar = document.querySelector('.profile__edit-avatar');
+
+export const profileName = document.querySelector('.profile__name');
+export const profileAbout = document.querySelector('.profile__job');
+export const profileAvatar = document.querySelector('.profile__avatar');
+
+
+export const avatarSubmitButton = document.querySelector('.popup__submit_avatar');
+export const profileSubmitButton = document.querySelector('.popup__submit_profile');
+export const cardSubmitButton = document.querySelector('.popup__submit_card');
+

@@ -37,3 +37,7 @@
 @import url(../blocks/popup/__submit/_inactive/popup__submit_inactive.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/places/__like-count/places__like-count.css);
+@import url(../blocks/popup/__edit-text/_delete/popup__edit-text_delete.css);
+@import url(../blocks/places/__delete-button/__delete-button_hidden/places__delete-button_hidden.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);

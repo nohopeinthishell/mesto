@@ -195,7 +195,7 @@ const addNewCard = (data) => {
   api
     .postNewCard(data)
     .then((res) => {
-      initialCardSet.addItem(createCard(res));
+      CardSection.addItem(createCard(res));
     })
     .then(() => {
       popupWithCardForm.close();

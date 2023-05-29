@@ -4,9 +4,9 @@
   row-gap: 16px;
   column-gap: 18px;
   grid-template-columns: auto auto;
-  grid-template-areas: 
-  "name button"
-  "job job";
+  grid-template-areas:
+    "name button"
+    "job job";
 }
 
 @media screen and (max-width: 1023px) {

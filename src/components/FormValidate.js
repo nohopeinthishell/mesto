@@ -10,27 +10,27 @@ export default class FormValidate {
   }
 
   _setEventListeners() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(this._inputSelector)
+    );
+    this._buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
     this.toggleButtonState();
-    this._inputList.forEach(inputElement => {
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      inputElement.addEventListener('input', () => {
+      inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this.toggleButtonState();
-      })
-    })
-
+      });
+    });
   }
-
 
   toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
-    }
-
-    else {
+    } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.disabled = false;
     }
@@ -40,17 +40,21 @@ export default class FormValidate {
     return this._inputList.some((inputElement) => {
       return !inputElement.checkValidity();
     });
-  }
+  };
 
   _hideInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(
+      `.${inputElement.id}-error`
+    );
     errorElement.classList.remove(this._errorClass);
-    errorElement.textContent = '';
+    errorElement.textContent = "";
     inputElement.classList.remove(this._inputErrorClass);
   }
 
   _showInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(
+      `.${inputElement.id}-error`
+    );
     errorElement.classList.add(this._errorClass);
     errorElement.textContent = inputElement.validationMessage;
     inputElement.classList.add(this._inputErrorClass);
@@ -59,24 +63,18 @@ export default class FormValidate {
   _checkInputValidity(inputElement) {
     if (!inputElement.checkValidity()) {
       this._showInputError(inputElement);
-    }
-    else {
+    } else {
       this._hideInputError(inputElement);
     }
   }
 
   removeValidationErrors = () => {
-    this._inputList.forEach(inputElement => { 
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-    })
-  }
+    });
+  };
 
   enabelValidation() {
     this._setEventListeners();
   }
-
 }
-
-
-
-

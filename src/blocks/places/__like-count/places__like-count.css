@@ -9,3 +9,8 @@
   margin: 0;
   align-self: center;
 }
+
+
+.places__like {
+  display: grid;
+}
